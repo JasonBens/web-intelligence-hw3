@@ -1,8 +1,6 @@
 
 # coding: utf-8
 
-# In[42]:
-
 #!/usr/bin/env python
 
 import glob
@@ -12,29 +10,21 @@ import cPickle as pickle
 # Note: spawn connected ipython console with '>ipython console --existing'
 
 
-# In[4]:
-
 # Get names of all files
 text_files = glob.glob('hw3data/*')
 #print text_files
 
-
-# In[5]:
 
 def file_contents(file_name):
     with open(file_name) as f:
         return f.read()
 
 
-# In[6]:
-
 # Create dictionary of {fileid: documentid:::authors:::title}
 source = dict((file_name, file_contents(file_name))
               for file_name in text_files)
 #print source[source.keys()[0]]
 
-
-# In[7]:
 
 # Finds incidences of keywords for each author.
 
@@ -72,8 +62,6 @@ def reducefn(key, value):
     return (key, term)
 
 
-# In[8]:
-
 s = mincemeat.Server()
 s.datasource = source
 s.mapfn = mapfn
@@ -83,8 +71,6 @@ results = s.run_server(password="changeme")
 
 # Note: spawn clients with '>py -2 mincemeat.py -p changeme localhost'
 
-
-# In[69]:
 
 with open('output.pkl', 'wb') as pklfile:
     pickle.dump(results, pklfile)
