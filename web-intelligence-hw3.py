@@ -81,8 +81,10 @@ s.reducefn = reducefn
 
 results = s.run_server(password="changeme")
 
+# Note: spawn clients with '>py -2 mincemeat.py -p changeme localhost'
 
-# In[ ]:
+
+# In[69]:
 
 with open('output.pkl', 'wb') as pklfile:
     pickle.dump(results, pklfile)
